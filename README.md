@@ -333,3 +333,6 @@ body {
 
 
 =========================recap again=======
+
+index.html dosyamızı oluşturduk. head kısmına linl tagı ile style.css dosyamızı bağladık. body kısmının altına script tagı ile app.js mixi bağladık
+
