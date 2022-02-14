@@ -13,3 +13,34 @@
     align-items: center;
     justify-content: center;
   }
+
+  .calculator{
+      background-color: black;
+      border-radius: 50px;
+      color:white;
+      height: 840px;
+      width: 500px;
+      position: relative;
+  }
+  .display{
+      height: 250px;
+      width: 93%;
+      border: 2px solid red;
+      margin: 20px;      
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      font-size: 100px;
+      text-align: right;
+      background-color: blue;
+      
+  }
+  .buttons-container{
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      
+
+  }
