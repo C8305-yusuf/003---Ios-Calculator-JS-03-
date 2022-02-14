@@ -1,6 +1,5 @@
 // variable
 
-
 const previousElement = document.querySelector(".previous-display");
 const currentElement = document.querySelector(".current-display");
 
@@ -40,29 +39,89 @@ const numbersArray = [
 
 let previousOperand = "";
 let currentOperand = "";
+let operation = undefined;
 
 //Functions
-function DisplayNumbers(){
-    previousElement.innerHTML= previousOperand;
-    currentElement.innerHTML= currentOperand;
+function DisplayNumbers() {
+    if(operation){
+        previousElement.innerHTML = previousOperand +" " + operation;
+    }else{
+        previousElement.innerHTML = previousOperand;
+    }
+  
+  currentElement.innerHTML = currentOperand;
 }
 
-function AppendNumber(number){
-    console.log("NUMBER: ", number);
-    currentOperand=currentOperand.toString() + number.toString();
-    DisplayNumbers();
-
+function AppendNumber(number) {
+  console.log("NUMBER: ", number);
+  currentOperand = currentOperand.toString() + number.toString();
+  DisplayNumbers();
 }
 
+function ChooseOperation(selectedOperation) {
+  operation = selectedOperation;
+  previousOperand = currentOperand;
+  currentOperand = "";
+
+  DisplayNumbers();
+}
+
+function Compute() {
+  let computation;
+  const previous = parseFloat(previousOperand);
+  const current = parseFloat(currentOperand);
+
+  switch (operation) {
+    case "+":
+      computation = previous + current;
+      break;
+    case "-":
+      computation = previous - current;
+      break;
+    case "*":
+      computation = previous * current;
+      break;
+    case "/":
+      computation = previous / current;
+      break;
+
+    default:
+      break;
+  }
+  currentOperand = computation;
+  previousOperand = "";
+  operation = undefined;
+
+  DisplayNumbers();
+}
 
 //Add event listener to operator buttons
+additionButton.addEventListener("click", () => {
+  ChooseOperation("+");
+});
+
+subtractionButton.addEventListener("click", () => {
+  ChooseOperation("-");
+});
+
+multiplicationButton.addEventListener("click", () => {
+  ChooseOperation("*");
+});
+
+divisionButton.addEventListener("click", () => {
+  ChooseOperation("/");
+});
+
+equalsButton.addEventListener("click", () => {
+  Compute();
+});
 //Add event listener to top buttons
 //Add event listener to number buttons
 
-for (let i=0; i < numbersArray.length ; i++) {
-    const number = numbersArray[i];
+for (let i = 0; i < numbersArray.length; i++) {
+  const number = numbersArray[i];
 
-    number.addEventListener("click",()=>{
-        AppendNumber(i)
-    })
-} 
+  number.addEventListener("click", () => {
+    AppendNumber(i);
+  });
+}
